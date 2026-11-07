@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4efe6; /* CREAM background */
+  --foreground: #060d1f; /* DARK text/primary */
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --card-border: rgba(6, 13, 31, 0.1);
+  --accent: #c8ff00; /* LIME accent */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-thai), var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar for premium look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* CSS Marquee keyframes with prefers-reduced-motion support */
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+@keyframes marquee-vertical-reverse {
+  from {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-horizontal {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 24s) linear infinite;
+}
+
+.animate-marquee-vertical-reverse {
+  animation: marquee-vertical-reverse var(--duration, 24s) linear infinite;
+}
+
+.animate-marquee-horizontal {
+  animation: marquee-horizontal var(--duration, 24s) linear infinite;
+}
+
+.group:hover .pause-on-hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-vertical,
+  .animate-marquee-vertical-reverse,
+  .animate-marquee-horizontal {
+    animation: none !important;
+    transform: none !important;
+  }
+}
