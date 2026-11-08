@@ -44,8 +44,13 @@ export default function ReleaseList({
 
       {/* Cards List */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <ReleaseCard key={project.slug} project={project} lang={lang} />
+        {projects.map((project, index) => (
+          <div
+            key={project.slug}
+            className={projects.length % 2 === 1 && index === 0 ? "md:col-span-2" : ""}
+          >
+            <ReleaseCard project={project} lang={lang} />
+          </div>
         ))}
       </div>
     </section>

@@ -68,8 +68,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     items: [
       {
         name: "Next.js (App Router)",
-        usageNote: "ใช้พัฒนา Hundee Group และเว็บพอร์ตโฟลิโอ (SSR/SSG, SEO)",
-        usageNoteEn: "Used in Hundee Group & Portfolio (App Router, SSR/SSG, SEO)",
+        usageNote: "ใช้พัฒนา NexiCloud, Hundee Group และเว็บพอร์ตโฟลิโอ (SSR/SSG, SEO)",
+        usageNoteEn: "Used in NexiCloud, Hundee Group & Portfolio (App Router, SSR/SSG, SEO)",
       },
       {
         name: "TypeScript",
@@ -101,9 +101,9 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         usageNoteEn: "Primary runtime for backend services and automation scripts",
       },
       {
-        name: "REST APIs / Route Handlers",
-        usageNote: "ออกแบบ API ที่ตรวจสอบข้อมูลและป้องกันสแปม",
-        usageNoteEn: "Validated API endpoints with rate/spam protection",
+        name: "REST APIs / WebSocket Signaling",
+        usageNote: "ออกแบบ API, ระบบชำระเงิน Stripe PromptPay และ WebSocket จับคู่เซสชันเรียลไทม์",
+        usageNoteEn: "Validated REST APIs, Stripe PromptPay webhooks, and real-time WebSocket signaling",
       },
       {
         name: "Prisma ORM",
@@ -183,20 +183,70 @@ export const EXPERIENCE: ExperienceItem[] = [
     periodEn: "2024 – Present",
     role: "Full-Stack Developer (อิสระ / โปรเจกต์ลูกค้า)",
     roleEn: "Full-Stack Developer (Independent & Client Projects)",
-    organization: "Hundee Group & ระบบเว็บแอปพลิเคชันธุรกิจ",
+    organization: "NexiCloud, Hundee Group & ระบบเว็บแอปพลิเคชันธุรกิจ",
     description:
-      "รับผิดชอบการออกแบบ พัฒนา และดูแลระบบเว็บแอปพลิเคชันแบบครบวงจร ตั้งแต่การวางโครงสร้างหน้าเว็บด้วย Next.js และ TypeScript ไปจนถึงการตั้งค่าเซิร์ฟเวอร์และการปล่อยระบบขึ้นใช้งานจริง",
+      "รับผิดชอบการออกแบบ พัฒนา และดูแลระบบเว็บแอปพลิเคชันแบบครบวงจร ตั้งแต่การวางโครงสร้างหน้าเว็บด้วย Next.js และ TypeScript ระบบชำระเงินอัตโนมัติ ไปจนถึงการตั้งค่าเซิร์ฟเวอร์และการปล่อยระบบขึ้นใช้งานจริง",
     descriptionEn:
-      "End-to-end architecture, development, and deployment of production web applications using Next.js, TypeScript, PostgreSQL, and Docker.",
+      "End-to-end architecture, development, and deployment of production web applications using Next.js, TypeScript, PostgreSQL, WebSocket, and Docker.",
     highlights: [
+      "ออกแบบและพัฒนา NexiCloud (nexicloud.company) แพลตฟอร์มเช่าเครื่องเล่นเกมผ่านคลาวด์ (Moonlight/Sunshine) พร้อมระบบเติมเงินอัตโนมัติผ่าน Stripe PromptPay QR และระบบควบคุมฮาร์ดแวร์ผ่าน Wake-on-LAN / SSH",
       "พัฒนาและส่งมอบแพลตฟอร์มเว็บ Hundee Group ให้โหลดหน้าแรกได้รวดเร็ว รองรับการใช้งานทั้งมือถือและเดสก์ท็อป",
-      "วางโครงสร้างโค้ดแบบแยกคอมโพเนนต์ (Modular Architecture) ลดขนาด JavaScript ฝั่งผู้ใช้ด้วย React Server Components",
-      "ตั้งค่าระบบ Deployment อัตโนมัติ, การทำ SEO เชิงเทคนิค (Structured Data, Sitemap, Canonical) และดูแลความเสถียรของระบบ",
+      "วางโครงสร้างโค้ดแบบแยกคอมโพเนนต์ (Modular Architecture) ลดขนาด JavaScript ฝั่งผู้ใช้ด้วย React Server Components และตั้งค่าระบบ CI/CD, Docker, Nginx และ Technical SEO ครบวงจร",
     ],
   },
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "nexicloud",
+    title: "NexiCloud — แพลตฟอร์มเช่าเครื่องเล่นเกมผ่านคลาวด์ความหน่วงต่ำ (nexicloud.company)",
+    titleEn: "NexiCloud — Low-Latency Cloud Gaming Rental & Host Orchestration Platform",
+    summary:
+      "พัฒนาแพลตฟอร์มเช่าเครื่องคอมพิวเตอร์สตรีมเกมระดับ AAA (4K 60fps, ความหน่วงต่ำระดับ 1ms) ผ่าน Moonlight/Sunshine แบบครบวงจร รองรับการจองคิวเครื่องแบบเรียลไทม์ ระบบกระเป๋าเงินเติมผ่าน Stripe PromptPay QR อัตโนมัติ การจับคู่ PIN ผ่าน WebSocket Signaling และระบบ Admin ควบคุมเปิด-ปิดเครื่องระยะไกลด้วย Wake-on-LAN และ SSH",
+    summaryEn:
+      "Engineered a full-stack cloud gaming rental platform enabling low-latency 4K 60fps AAA game streaming via Moonlight/Sunshine, complete with real-time WebSocket PIN pairing, automated Stripe PromptPay QR wallet top-ups, TOTP 2FA admin security, and Wake-on-LAN/SSH hardware orchestration.",
+    role: "Full-Stack Developer & System Architect (ออกแบบระบบทั้งหมดตั้งแต่ UI, API, Payment จนถึงระบบควบคุมเครื่องโฮสต์)",
+    period: "2026",
+    clientOrContext: "NexiCloud (nexicloud.company)",
+    problem:
+      "การให้บริการเช่าเครื่องคอมพิวเตอร์สตรีมเกมผ่านคลาวด์ (Cloud Gaming) มีความซับซ้อนสูงทั้งด้านการจัดการสถานะเครื่องโฮสต์แบบเรียลไทม์ การจับคู่รหัส PIN กับโปรแกรมสตรีมมิ่ง (Moonlight/Sunshine) ภายในเวลาจำกัด การตรวจสอบยอดเติมเงินที่ต้องแม่นยำระดับทศนิยมและปรับยอดทันที รวมถึงการจัดการเปิด-ปิดเครื่องและล้างข้อมูลเซสชันเดิมอัตโนมัติเพื่อความปลอดภัยของผู้เล่นคนถัดไป",
+    problemEn:
+      "Operating an on-demand cloud gaming rental service requires tight synchronization between web bookings, instant QR payment verification, time-sensitive Moonlight/Sunshine PIN pairing over WebSockets, and automated host PC power/quarantine lifecycle management.",
+    solution: [
+      "พัฒนาเว็บแอปพลิเคชันด้วย Next.js (App Router) และ TypeScript ควบคู่กับ TanStack Query และ External Store เพื่อซิงค์สถานะเครื่องโฮสต์ (ว่าง, ใช้งานอยู่, กำลังเปิดเครื่อง, กักกัน, ปรับปรุง) แบบเรียลไทม์โดยไม่ต้องรีเฟรชหน้าเว็บ",
+      "ออกแบบระบบ WebSocket Signaling Server (wss://api.nexicloud.company) สำหรับส่งรหัส PIN 4 หลักไปจับคู่กับเครื่อง Host PC ทันที พร้อมระบบแจ้งเตือนก่อนหมดเวลาเช่า (Expiry Warning) และระบบ Reconnect อัตโนมัติแบบ Exponential Backoff with Jitter",
+      "เชื่อมต่อระบบกระเป๋าเงิน (Wallet) และการสแกนจ่ายผ่าน Stripe PromptPay QR Code ที่ตรวจสอบธุรกรรมและปรับยอดเงินอัตโนมัติภายใน 3–5 วินาที พร้อมบันทึกบัญชีแยกประเภทส่วนกลาง (Audit Ledger) ที่ใช้การคำนวณทศนิยมความแม่นยำสูง (Decimal Precision)",
+      "สร้างระบบ Admin Console & Hardware Orchestration รองรับการสั่งเปิดเครื่องผ่าน Wake-on-LAN (MAC Address), สั่งรีบูตหรือปิดเครื่องผ่าน SSH, ระบบตั้งราคาโปรโมชั่นรายเครื่องหรือทั้งระบบ, แดชบอร์ดกราฟรายได้ 14 วัน และระบบความปลอดภัยผู้ดูแลด้วย TOTP 2FA (Authenticator) พร้อม httpOnly Cookie และมาตรฐาน PDPA",
+    ],
+    solutionEn: [
+      "Built the frontend with Next.js, TypeScript, and TanStack Query to synchronize live Host PC states (available, provisioning, in-use, quarantined, maintenance) and dynamic promotional pricing.",
+      "Implemented a WebSocket signaling layer (wss://) with exponential backoff reconnection to handle 4-digit Moonlight/Sunshine PIN pairing, live session readiness, and rental expiry notifications.",
+      "Integrated Stripe PromptPay QR top-ups with 3–5 second automated wallet crediting and a centralized financial Audit Ledger.",
+      "Engineered an Admin Console featuring TOTP 2FA authentication, Wake-on-LAN (WOL) & SSH remote power controls, automated host agent spec reporting, and post-session account cleanup.",
+    ],
+    results: [
+      "ผู้เล่นสามารถล็อกอินผ่าน Google เลือกเช่าเครื่อง สแกนเติมเงินผ่าน PromptPay และจับคู่รหัส PIN เพื่อเข้าเล่นเกมระดับ AAA ที่ความละเอียดสูง 4K 60fps บน Windows, macOS, Android และ iOS/iPadOS ได้ภายในไม่กี่วินาที",
+      "ลดภาระการดูแลเครื่องของผู้ดูแลระบบด้วยระบบสั่งเปิด-ปิด/รีบูตระยะไกล (WOL & SSH) ระบบกักกันและล้างข้อมูลบัญชีเดิมอัตโนมัติหลังจบเซสชันการจอง",
+      "ระบบการเงินและธุรกรรมมีความโปร่งใส ตรวจสอบย้อนหลังได้ทุกขั้นตอนผ่าน Audit Ledger และกราฟวิเคราะห์อัตราการใช้งานเครื่อง (Host Utilization) แบบเรียลไทม์",
+    ],
+    resultsEn: [
+      "Enabled seamless self-service onboarding: users sign in with Google, top up via PromptPay QR in 3–5 seconds, and pair their Moonlight client via a 4-digit PIN across desktop and mobile devices.",
+      "Automated Host PC lifecycle management via remote Wake-on-LAN, SSH power controls, and post-session environment sanitization.",
+      "Delivered complete financial and operational visibility through a real-time Audit Ledger, 14-day revenue analytics, and host utilization telemetry.",
+    ],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "WebSocket",
+      "Stripe PromptPay",
+      "Tailwind CSS",
+      "Docker",
+    ],
+    url: "https://nexicloud.company/",
+    repoUrl: "https://github.com/DKBOTMONEY",
+    featured: true,
+  },
   {
     slug: "hundee-group",
     title: "แพลตฟอร์มเว็บแอปพลิเคชัน Hundee Group",
@@ -280,6 +330,75 @@ export const PROJECTS: Project[] = [
 ];
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "nexicloud-cloud-gaming-architecture",
+    title:
+      "เบื้องหลังสถาปัตยกรรม NexiCloud: ระบบเช่าเครื่อง Cloud Gaming ความหน่วงต่ำด้วย Next.js, WebSocket และ Wake-on-LAN",
+    titleEn:
+      "Architecting NexiCloud: Real-Time Cloud Gaming Rental with Next.js, WebSocket Signaling, and Wake-on-LAN Orchestration",
+    summary:
+      "เจาะลึกการออกแบบระบบเบื้องหลัง nexicloud.company แพลตฟอร์มเช่าเครื่องสตรีมเกมระดับ AAA ผ่าน Moonlight/Sunshine ตั้งแต่การจับคู่รหัส PIN แบบเรียลไทม์ผ่าน WebSocket ระบบเติมเงิน Stripe PromptPay QR อัตโนมัติ ไปจนถึงการสั่งเปิด-ปิดและล้างข้อมูลเครื่องโฮสต์ระยะไกล",
+    summaryEn:
+      "An architectural deep dive by Patipan Plonying into building nexicloud.company—covering WebSocket signaling for Moonlight/Sunshine PIN pairing, automated Stripe PromptPay QR wallet top-ups, and remote Wake-on-LAN/SSH host management.",
+    publishedAt: "2026-11-08",
+    updatedAt: "2026-11-08",
+    readingTime: "7 นาที",
+    tags: ["Next.js", "WebSocket", "Cloud Gaming", "Stripe PromptPay", "System Architecture"],
+    author: "ปฏิภาณ พลยิ่ง (Patipan Plonying)",
+    authorEn: "Patipan Plonying",
+    sections: [
+      {
+        heading: "1. โจทย์ของระบบเช่าเครื่องเล่นเกมผ่านคลาวด์ (Cloud Gaming Rental)",
+        paragraphs: [
+          "ในการพัฒนาแพลตฟอร์ม NexiCloud (https://nexicloud.company/) เป้าหมายหลักคือการทำให้ผู้เล่นสามารถเช่าเครื่องคอมพิวเตอร์สเปกสูงเพื่อสตรีมเกมระดับ AAA ที่ความละเอียดสูงถึง 4K 60fps ด้วยความหน่วงต่ำ (Low Latency) ผ่านโปรโตคอล Moonlight และ Sunshine ได้จากทุกอุปกรณ์ ไม่ว่าจะเป็น Windows, macOS, Android หรือ iOS/iPadOS",
+          "ความท้าทายทางวิศวกรรมที่ ปฏิภาณ พลยิ่ง (Patipan Plonying) ต้องออกแบบแก้ไขไม่ได้มีเพียงแค่หน้าเว็บไซต์จองคิว แต่คือการเชื่อมต่อ 3 ส่วนเข้าด้วยกันแบบไร้รอยต่อ ได้แก่ (1) ระบบกระเป๋าเงินและเติมเงินอัตโนมัติ (2) ระบบ Signaling จับคู่รหัส PIN 4 หลักกับเครื่อง Host PC ภายในเวลาที่กำหนด และ (3) ระบบควบคุมสถานะฮาร์ดแวร์ระยะไกลที่ต้องล้างข้อมูลเซสชันเดิมทุกครั้งเพื่อความปลอดภัย",
+        ],
+      },
+      {
+        heading: "2. ระบบจับคู่รหัส PIN และแจ้งเตือนสถานะเซสชันแบบเรียลไทม์ด้วย WebSocket",
+        paragraphs: [
+          "เมื่อผู้เล่นจองเครื่องสำเร็จและเปิดแอปพลิเคชัน Moonlight ระบบจะต้องส่งรหัส PIN 4 หลักจากหน้าเว็บไปยังเครื่อง Host PC ทันทีและแจ้งผลลัพธ์กลับมายังหน้าจอของผู้เล่นโดยไม่ต้องกดรีเฟรช เราจึงออกแบบ WebSocket Signaling Client ที่รองรับการต่อการเชื่อมต่อใหม่อัตโนมัติแบบ Exponential Backoff พร้อม Jitter เพื่อป้องกันปัญหาเซิร์ฟเวอร์รับโหลดพร้อมกันเมื่อเครือข่ายสะดุด",
+        ],
+        code: {
+          language: "typescript",
+          filename: "src/lib/signaling-ws.ts",
+          snippet: `// ตัวอย่างการคำนวณเวลา Reconnect แบบ Exponential Backoff + Jitter
+function getReconnectDelayMs(attempt: number): number {
+  const baseDelay = Math.min(1000 * Math.pow(2, attempt), 30000);
+  const jitter = 0.75 + 0.5 * Math.random();
+  return Math.floor(baseDelay * jitter);
+}
+
+// ส่งคำสั่งจับคู่รหัส PIN 4 หลักไปยังเครื่อง Host PC ทันทีผ่าน WebSocket
+export function sendLaunchTrigger(ws: WebSocket | null, bookingId: string, pin: string) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(
+      JSON.stringify({
+        type: "launch_session",
+        bookingId,
+        pin,
+      })
+    );
+  }
+}`,
+        },
+      },
+      {
+        heading: "3. ระบบเติมเงินอัตโนมัติผ่าน Stripe PromptPay QR และบัญชีแยกประเภท (Audit Ledger)",
+        paragraphs: [
+          "เพื่อให้ผู้เล่นเริ่มต้นใช้งานได้สะดวกที่สุดด้วยอัตราค่าบริการเริ่มต้นเพียงชั่วโมงละ 9 บาท ระบบกระเป๋าเงิน (Wallet) จึงเชื่อมต่อกับบริการ Stripe PromptPay ที่สร้าง QR Code ให้สแกนผ่านแอปพลิเคชันธนาคารได้ทันที และตรวจสอบสถานะธุรกรรมเพื่อปรับยอดเงินเข้ากระเป๋าอัตโนมัติภายใน 3–5 วินาที",
+          "ทุกธุรกรรมการเติมเงินและการหักค่าเช่าเครื่องจะถูกบันทึกเข้าสู่ตารางบัญชีแยกประเภทส่วนกลาง (Audit Ledger) พร้อมอ้างอิงรหัส Gateway Reference ID และใช้การคำนวณทศนิยมแบบ Decimal Precision เพื่อป้องกันปัญหาค่าคลาดเคลื่อนของตัวเลขทศนิยม (Floating-point precision) ในระบบการเงิน",
+        ],
+      },
+      {
+        heading: "4. การควบคุมฮาร์ดแวร์ระยะไกล (Wake-on-LAN & SSH) และมาตรฐานความปลอดภัย",
+        paragraphs: [
+          "ในฝั่งผู้ดูแลระบบ (Admin Console) เราได้พัฒนาแผงควบคุมที่สามารถสั่งเปิดเครื่องคอมพิวเตอร์โฮสต์ผ่านเครือข่ายด้วย Wake-on-LAN (อ้างอิงจาก MAC Address) และสั่งรีบูตหรือปิดเครื่องผ่าน SSH ได้โดยตรงจากหน้าเว็บ พร้อมระบบ Host Agent ที่รายงานสเปกเครื่อง (CPU, GPU, RAM) และสถานะการใช้งานเข้าสู่ระบบกลางอัตโนมัติ",
+          "ด้านความปลอดภัยของระบบ บัญชีผู้ดูแลถูกปกป้องด้วยการยืนยันตัวตนสองขั้นตอน (TOTP 2FA / Authenticator) จัดเก็บ Access Token ในรูปแบบ httpOnly Cookie เพื่อป้องกัน XSS และมีกระบวนการสลับรอบเครื่องพร้อมล้างประวัติการเข้าสู่ระบบบัญชีเกมเดิมทั้งหมดทันทีหลังจบเซสชันการจองแต่ละครั้ง",
+        ],
+      },
+    ],
+  },
   {
     slug: "deploy-nextjs-docker-nginx",
     title: "แนวทางการ Deploy Next.js ขึ้น Production ด้วย Docker และ Nginx Reverse Proxy",

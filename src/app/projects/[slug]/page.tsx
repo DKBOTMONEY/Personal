@@ -159,33 +159,67 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
-            <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
-                Layer 01 · Client &amp; Edge
-              </span>
-              <p className="font-bold text-sm">Responsive UI &amp; App Router</p>
-              <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
-                เรนเดอร์หน้าเว็บด้วย React Server Components ลดขนาด JS และรองรับทุกหน้าจอด้วย Tailwind CSS
-              </p>
-            </div>
-            <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
-                Layer 02 · Application Logic
-              </span>
-              <p className="font-bold text-sm">TypeScript &amp; Structured SEO</p>
-              <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
-                ควบคุม Type Safety ทั้งระบบ พร้อมสร้าง Metadata, Sitemap และ Schema.org JSON-LD อัตโนมัติ
-              </p>
-            </div>
-            <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
-                Layer 03 · Deployment
-              </span>
-              <p className="font-bold text-sm">Automated CI/CD &amp; Hosting</p>
-              <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
-                ตรวจสอบ Build อัตโนมัติจาก Git Repository และเผยแพร่ผ่าน CDN/Container ที่มีความเสถียรสูง
-              </p>
-            </div>
+            {project.slug === "nexicloud" ? (
+              <>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 01 · Client &amp; Real-Time Signaling
+                  </span>
+                  <p className="font-bold text-sm">Next.js + WebSocket (wss://)</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    ซิงค์สถานะเครื่องโฮสต์แบบเรียลไทม์ ส่งรหัสจับคู่ PIN 4 หลัก และแจ้งเตือนเวลาเช่าผ่าน WebSocket พร้อม Exponential Backoff
+                  </p>
+                </div>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 02 · Wallet, Auth &amp; Security
+                  </span>
+                  <p className="font-bold text-sm">Stripe PromptPay + TOTP 2FA</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    เติมเงินอัตโนมัติใน 3–5 วินาทีพร้อม Audit Ledger, Google OAuth, httpOnly Cookie และระบบ 2FA สำหรับผู้ดูแล
+                  </p>
+                </div>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 03 · Host PC Orchestration
+                  </span>
+                  <p className="font-bold text-sm">Moonlight/Sunshine + WOL &amp; SSH</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    สตรีมเกม 4K 60fps ความหน่วงต่ำ สั่งเปิด-ปิดเครื่องระยะไกลด้วย Wake-on-LAN/SSH และล้างข้อมูลเซสชันอัตโนมัติ
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 01 · Client &amp; Edge
+                  </span>
+                  <p className="font-bold text-sm">Responsive UI &amp; App Router</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    เรนเดอร์หน้าเว็บด้วย React Server Components ลดขนาด JS และรองรับทุกหน้าจอด้วย Tailwind CSS
+                  </p>
+                </div>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 02 · Application Logic
+                  </span>
+                  <p className="font-bold text-sm">TypeScript &amp; Structured SEO</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    ควบคุม Type Safety ทั้งระบบ พร้อมสร้าง Metadata, Sitemap และ Schema.org JSON-LD อัตโนมัติ
+                  </p>
+                </div>
+                <div className="p-4 border border-[#f4efe6]/15 bg-white/5 space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#c8ff00]">
+                    Layer 03 · Deployment
+                  </span>
+                  <p className="font-bold text-sm">Automated CI/CD &amp; Hosting</p>
+                  <p className="text-xs text-[#f4efe6]/70 leading-relaxed">
+                    ตรวจสอบ Build อัตโนมัติจาก Git Repository และเผยแพร่ผ่าน CDN/Container ที่มีความเสถียรสูง
+                  </p>
+                </div>
+              </>
+            )}
           </div>
 
           <figcaption className="text-xs font-mono text-[#f4efe6]/60 pt-2 border-t border-[#f4efe6]/10">

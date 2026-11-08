@@ -7,7 +7,7 @@ import { PROFILE, PROJECTS } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: `ผลงานและกรณีศึกษา (Projects) — ${PROFILE.nameTh} (${PROFILE.nameEn})`,
-  description: `รวมโปรเจกต์และกรณีศึกษาการพัฒนาเว็บแอปพลิเคชันของ ${PROFILE.nameTh} (${PROFILE.nameEn}) เช่น แพลตฟอร์ม Hundee Group และระบบโครงสร้างพื้นฐานด้วย Next.js, TypeScript และ Docker`,
+  description: `รวมโปรเจกต์และกรณีศึกษาการพัฒนาเว็บแอปพลิเคชันของ ${PROFILE.nameTh} (${PROFILE.nameEn}) เช่น แพลตฟอร์ม NexiCloud, Hundee Group และระบบโครงสร้างพื้นฐานด้วย Next.js, TypeScript, WebSocket และ Docker`,
   alternates: {
     canonical: "/projects",
   },

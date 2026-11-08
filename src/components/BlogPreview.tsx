@@ -32,7 +32,7 @@ export default function BlogPreview({ lang = "th" }: BlogPreviewProps) {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {BLOG_POSTS.map((post) => (
           <article
             key={post.slug}
