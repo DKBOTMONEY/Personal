@@ -61,11 +61,29 @@ export default function Contact({ lang = "th" }: ContactProps) {
 
       if (response.ok && data.ok) {
         setStatus("success");
-        setFeedbackMessage(
-          lang === "th"
-            ? "ขอบคุณสำหรับข้อความ! ปฏิภาณ พลยิ่ง ได้รับข้อมูลแล้วและจะติดต่อกลับทางอีเมลโดยเร็วที่สุด"
-            : "Thank you! Patipan Plonying has received your message and will get back to you shortly."
-        );
+        if (data.deliveredViaWebhook) {
+          setFeedbackMessage(
+            lang === "th"
+              ? "ขอบคุณสำหรับข้อความ! ปฏิภาณ พลยิ่ง ได้รับข้อมูลแล้วและจะติดต่อกลับทางอีเมลโดยเร็วที่สุด"
+              : "Thank you! Patipan Plonying has received your message and will get back to you shortly."
+          );
+        } else {
+          // Open mailto fallback so no message is ever lost when server webhook is not configured
+          const fullEmail = getFullEmail();
+          const mailSubject = encodeURIComponent(
+            `[pl-patipan.in.th] ติดต่อจาก ${name.trim()}`
+          );
+          const mailBody = encodeURIComponent(
+            `ชื่อผู้ติดต่อ: ${name.trim()}\nอีเมลติดต่อกลับ: ${email.trim()}\n\nรายละเอียดข้อความ:\n${message.trim()}`
+          );
+          setEmailRevealed(true);
+          window.location.href = `mailto:${fullEmail}?subject=${mailSubject}&body=${mailBody}`;
+          setFeedbackMessage(
+            lang === "th"
+              ? `ตรวจสอบข้อมูลเรียบร้อยแล้ว ระบบกำลังเปิดโปรแกรมอีเมลเพื่อส่งข้อความถึง ${fullEmail} โดยตรง (หรือคัดลอกอีเมลด้านซ้ายได้ทันที)`
+              : `Message verified! Opening your email client to send directly to ${fullEmail}.`
+          );
+        }
         setName("");
         setEmail("");
         setMessage("");

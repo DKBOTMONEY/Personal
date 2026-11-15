@@ -19,19 +19,28 @@ export default function Marquee({
   reverse = true,
   pauseOnHover = true,
   children,
+  speed,
   vertical = true,
   repeat = 2,
+  style,
   ...props
 }: MarqueeProps) {
   const animClass = vertical
     ? reverse
       ? "animate-marquee-vertical-reverse"
       : "animate-marquee-vertical"
+    : reverse
+    ? "animate-marquee-horizontal-reverse"
     : "animate-marquee-horizontal";
+
+  const customStyle = speed
+    ? ({ "--duration": `${speed}s`, ...style } as React.CSSProperties)
+    : style;
 
   return (
     <div
       {...props}
+      style={customStyle}
       className={cn(
         "group flex overflow-hidden [--gap:1rem] [--duration:22s] [gap:var(--gap)] select-none",
         vertical ? "flex-col" : "flex-row",

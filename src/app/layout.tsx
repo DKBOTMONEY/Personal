@@ -17,21 +17,21 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 const barlowCondensed = Barlow_Condensed({
-  variable: "--font-display",
+  variable: "--font-barlow",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   display: "swap",
 });
 
 const dmSans = DM_Sans({
-  variable: "--font-sans",
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   weight: ["400", "600"],
   display: "swap",
@@ -76,10 +76,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className="scroll-smooth">
-      <body
-        className={`${notoSansThai.variable} ${dmSans.variable} ${barlowCondensed.variable} ${jetbrainsMono.variable} min-h-screen bg-background text-foreground antialiased`}
-      >
+    <html
+      lang="th"
+      className={`${notoSansThai.variable} ${dmSans.variable} ${barlowCondensed.variable} ${jetbrainsMono.variable} scroll-smooth`}
+    >
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <PersonJsonLd />
         {children}
       </body>

@@ -184,6 +184,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     role: "Full-Stack Developer (อิสระ / โปรเจกต์ลูกค้า)",
     roleEn: "Full-Stack Developer (Independent & Client Projects)",
     organization: "NexiCloud, Hundee Group & ระบบเว็บแอปพลิเคชันธุรกิจ",
+    organizationEn: "NexiCloud, Hundee Group & Business Web Platforms",
     description:
       "รับผิดชอบการออกแบบ พัฒนา และดูแลระบบเว็บแอปพลิเคชันแบบครบวงจร ตั้งแต่การวางโครงสร้างหน้าเว็บด้วย Next.js และ TypeScript ระบบชำระเงินอัตโนมัติ ไปจนถึงการตั้งค่าเซิร์ฟเวอร์และการปล่อยระบบขึ้นใช้งานจริง",
     descriptionEn:
@@ -192,6 +193,11 @@ export const EXPERIENCE: ExperienceItem[] = [
       "ออกแบบและพัฒนา NexiCloud (nexicloud.company) แพลตฟอร์มเช่าเครื่องเล่นเกมผ่านคลาวด์ (Moonlight/Sunshine) พร้อมระบบเติมเงินอัตโนมัติผ่าน Stripe PromptPay QR และระบบควบคุมฮาร์ดแวร์ผ่าน Wake-on-LAN / SSH",
       "พัฒนาและส่งมอบแพลตฟอร์มเว็บ Hundee Group ให้โหลดหน้าแรกได้รวดเร็ว รองรับการใช้งานทั้งมือถือและเดสก์ท็อป",
       "วางโครงสร้างโค้ดแบบแยกคอมโพเนนต์ (Modular Architecture) ลดขนาด JavaScript ฝั่งผู้ใช้ด้วย React Server Components และตั้งค่าระบบ CI/CD, Docker, Nginx และ Technical SEO ครบวงจร",
+    ],
+    highlightsEn: [
+      "Architected and built NexiCloud (nexicloud.company), a low-latency cloud gaming rental platform with WebSocket PIN pairing, automated Stripe PromptPay QR top-ups, and Wake-on-LAN/SSH host orchestration.",
+      "Delivered the Hundee Group web platform with fast Core Web Vitals and responsive mobile/desktop UX.",
+      "Implemented modular React Server Components, end-to-end TypeScript safety, Docker/Nginx deployment pipelines, and Schema.org technical SEO.",
     ],
   },
 ];

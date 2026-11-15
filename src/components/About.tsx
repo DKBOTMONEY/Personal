@@ -75,7 +75,9 @@ export default function About({ lang = "th", showFullLink = true }: AboutProps) 
                 : `Since ${PROFILE.startYear} – Present (2+ years)`}
             </span>
             <span className="text-xs text-foreground/65 font-sans">
-              Hundee Group &amp; Web Application Projects
+              {lang === "th"
+                ? EXPERIENCE[0]?.organization
+                : EXPERIENCE[0]?.organizationEn}
             </span>
           </div>
 
@@ -117,7 +119,9 @@ export default function About({ lang = "th", showFullLink = true }: AboutProps) 
               <div key={idx} className="space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="font-bold text-sm text-foreground">
-                    {lang === "th" ? exp.role : exp.roleEn} · {exp.organization}
+                    {lang === "th"
+                      ? `${exp.role} · ${exp.organization}`
+                      : `${exp.roleEn} · ${exp.organizationEn}`}
                   </span>
                   <span className="text-xs font-mono px-2.5 py-0.5 bg-[#060d1f]/10 text-foreground font-semibold">
                     {lang === "th" ? exp.period : exp.periodEn}

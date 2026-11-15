@@ -33,7 +33,7 @@ export default function Footer({ lang = "th" }: FooterProps) {
             <Link href="/" className="hover:text-foreground">
               {lang === "th" ? "หน้าแรก" : "Home (TH)"}
             </Link>
-            <Link href="/about" className="hover:text-foreground">
+            <Link href={lang === "th" ? "/about" : "/en/about"} className="hover:text-foreground">
               {lang === "th" ? "เกี่ยวกับฉัน" : "About"}
             </Link>
             <Link href="/projects" className="hover:text-foreground">

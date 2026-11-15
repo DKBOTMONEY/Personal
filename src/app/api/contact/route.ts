@@ -113,6 +113,29 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 7. Forward inquiry to webhook if configured (e.g. Discord / Slack / Custom Webhook)
+    const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
+    let deliveredViaWebhook = false;
+
+    if (webhookUrl) {
+      try {
+        const webhookRes = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            content: `📩 **ข้อความติดต่อใหม่จากพอร์ตโฟลิโอ (pl-patipan.in.th)**\n**ชื่อ:** ${cleanName}\n**อีเมล:** ${cleanEmail}\n**ข้อความ:**\n${cleanMessage}`,
+            name: cleanName,
+            email: cleanEmail,
+            message: cleanMessage,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+        deliveredViaWebhook = webhookRes.ok;
+      } catch {
+        deliveredViaWebhook = false;
+      }
+    }
+
     // Log safely without raw multi-line log injection
     console.info(
       JSON.stringify({
@@ -121,10 +144,15 @@ export async function POST(req: NextRequest) {
         senderName: cleanName,
         senderEmail: cleanEmail,
         messageLength: cleanMessage.length,
+        deliveredViaWebhook,
       })
     );
 
-    return NextResponse.json({ ok: true, status: "Transmission verified." });
+    return NextResponse.json({
+      ok: true,
+      deliveredViaWebhook,
+      status: "Transmission verified.",
+    });
   } catch {
     return NextResponse.json(
       { ok: false, error: "Invalid request payload." },

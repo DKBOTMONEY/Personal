@@ -129,7 +129,7 @@ export default function EnglishAboutPage() {
                 <div key={idx} className="space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="font-bold text-lg text-foreground">
-                      {exp.roleEn} — Hundee Group &amp; Business Web Platforms
+                      {exp.roleEn} — {exp.organizationEn}
                     </h3>
                     <span className="text-xs font-mono px-3 py-1 bg-[#060d1f] text-[#c8ff00] font-semibold">
                       {exp.periodEn}
@@ -138,6 +138,14 @@ export default function EnglishAboutPage() {
                   <p className="text-sm text-foreground/80 leading-relaxed">
                     {exp.descriptionEn}
                   </p>
+                  <ul className="space-y-2 pt-2">
+                    {exp.highlightsEn.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                        <span className="font-bold text-[#060d1f]">✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>

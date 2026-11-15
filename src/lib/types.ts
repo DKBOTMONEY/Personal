@@ -38,9 +38,11 @@ export type ExperienceItem = {
   role: string;
   roleEn: string;
   organization: string;
+  organizationEn: string;
   description: string;
   descriptionEn: string;
   highlights: string[];
+  highlightsEn: string[];
 };
 
 export type BlogPost = {
