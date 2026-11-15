@@ -6,9 +6,10 @@ import { PROFILE } from "@/data/projects";
 interface NavbarProps {
   lang?: "th" | "en";
   variant?: "hero" | "page";
+  switchHref?: string;
 }
 
-export default function Navbar({ lang = "th", variant = "page" }: NavbarProps) {
+export default function Navbar({ lang = "th", variant = "page", switchHref }: NavbarProps) {
   const githubLink =
     PROFILE.social.find((s) => s.url.includes("github"))?.url ||
     "https://github.com/DKBOTMONEY";
@@ -28,9 +29,9 @@ export default function Navbar({ lang = "th", variant = "page" }: NavbarProps) {
       : [
           { href: "/en", label: "Home" },
           { href: "/en/about", label: "About" },
-          { href: "/projects", label: "Projects" },
-          { href: "/blog", label: "Blog" },
-          { href: "/contact", label: "Contact" },
+          { href: "/en/projects", label: "Projects" },
+          { href: "/en/blog", label: "Blog" },
+          { href: "/en/contact", label: "Contact" },
         ];
 
   return (
@@ -70,7 +71,7 @@ export default function Navbar({ lang = "th", variant = "page" }: NavbarProps) {
 
           <div className="flex items-center gap-3">
             <Link
-              href={lang === "th" ? "/en" : "/"}
+              href={switchHref ?? (lang === "th" ? "/en" : "/")}
               className="px-2.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider border border-[#060d1f]/25 hover:border-[#060d1f] bg-white/40 text-[#060d1f] transition-colors"
               title={lang === "th" ? "Switch to English version" : "สลับเป็นภาษาไทย"}
             >

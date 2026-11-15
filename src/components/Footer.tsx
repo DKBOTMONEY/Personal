@@ -30,23 +30,23 @@ export default function Footer({ lang = "th" }: FooterProps) {
             aria-label="Footer navigation"
             className="flex flex-wrap gap-4 mt-4 text-xs font-mono font-semibold uppercase tracking-wider text-foreground/70"
           >
-            <Link href="/" className="hover:text-foreground">
-              {lang === "th" ? "หน้าแรก" : "Home (TH)"}
+            <Link href={lang === "th" ? "/" : "/en"} className="hover:text-foreground">
+              {lang === "th" ? "หน้าแรก" : "Home"}
             </Link>
             <Link href={lang === "th" ? "/about" : "/en/about"} className="hover:text-foreground">
               {lang === "th" ? "เกี่ยวกับฉัน" : "About"}
             </Link>
-            <Link href="/projects" className="hover:text-foreground">
+            <Link href={lang === "th" ? "/projects" : "/en/projects"} className="hover:text-foreground">
               {lang === "th" ? "โปรเจกต์" : "Projects"}
             </Link>
-            <Link href="/blog" className="hover:text-foreground">
+            <Link href={lang === "th" ? "/blog" : "/en/blog"} className="hover:text-foreground">
               {lang === "th" ? "บทความ" : "Blog"}
             </Link>
-            <Link href="/contact" className="hover:text-foreground">
+            <Link href={lang === "th" ? "/contact" : "/en/contact"} className="hover:text-foreground">
               {lang === "th" ? "ติดต่อ" : "Contact"}
             </Link>
-            <Link href="/en" className="hover:text-foreground">
-              English (/en)
+            <Link href={lang === "th" ? "/en" : "/"} className="hover:text-foreground">
+              {lang === "th" ? "English (/en)" : "ภาษาไทย (/)"}
             </Link>
           </nav>
         </div>
@@ -69,7 +69,7 @@ export default function Footer({ lang = "th" }: FooterProps) {
             <Linkedin size={14} /> LinkedIn
           </a>
           <Link
-            href="/contact"
+            href={lang === "th" ? "/contact" : "/en/contact"}
             className="inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-wide transition-colors font-mono border border-foreground/25 text-foreground hover:border-foreground bg-white/40"
           >
             {lang === "th" ? "ส่งข้อความ" : "Contact Form"}

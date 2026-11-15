@@ -10,13 +10,17 @@ export const metadata: Metadata = {
   description: `รวมโปรเจกต์และกรณีศึกษาการพัฒนาเว็บแอปพลิเคชันของ ${PROFILE.nameTh} (${PROFILE.nameEn}) เช่น แพลตฟอร์ม NexiCloud, Hundee Group และระบบโครงสร้างพื้นฐานด้วย Next.js, TypeScript, WebSocket และ Docker`,
   alternates: {
     canonical: "/projects",
+    languages: {
+      "th-TH": "/projects",
+      "en-US": "/en/projects",
+    },
   },
 };
 
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref="/en/projects" />
 
       <main className="max-w-5xl w-full mx-auto px-6 md:px-16 py-14 md:py-20 space-y-12">
         <header className="border-b border-foreground/15 pb-8">

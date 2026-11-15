@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   description: `ประวัติ แนวคิดการทำงาน และประสบการณ์ของ ${PROFILE.nameTh} (${PROFILE.nameEn} / ${PROFILE.nicknameTh}) Full-Stack Developer ผู้เชี่ยวชาญ Next.js, TypeScript, Node.js, PostgreSQL และ Docker`,
   alternates: {
     canonical: "/about",
+    languages: {
+      "th-TH": "/about",
+      "en-US": "/en/about",
+    },
   },
 };
 
@@ -25,7 +29,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref="/en/about" />
 
       <main className="max-w-5xl w-full mx-auto px-6 md:px-16 py-14 md:py-20 space-y-16">
         {/* Page Header */}

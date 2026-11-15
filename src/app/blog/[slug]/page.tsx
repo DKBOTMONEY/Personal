@@ -32,6 +32,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.summary,
     alternates: {
       canonical: `/blog/${post.slug}`,
+      languages: {
+        "th-TH": `/blog/${post.slug}`,
+        "en-US": `/en/blog/${post.slug}`,
+      },
     },
     openGraph: {
       type: "article",
@@ -83,7 +87,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref={`/en/blog/${post.slug}`} />
 
       <main className="max-w-3xl w-full mx-auto px-6 md:px-12 py-14 md:py-20 space-y-10">
         {/* Breadcrumb */}

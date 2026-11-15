@@ -33,7 +33,7 @@ export default function ReleaseList({
 
         {showAllLink && (
           <Link
-            href="/projects"
+            href={lang === "th" ? "/projects" : "/en/projects"}
             className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider px-4 py-2.5 border border-foreground/25 hover:border-foreground bg-white/50 text-foreground transition-colors self-start sm:self-auto"
           >
             <span>{lang === "th" ? "ดูโปรเจกต์ทั้งหมด" : "View All Projects"}</span>

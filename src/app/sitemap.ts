@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contact", priority: 0.8 },
     { path: "/en", priority: 0.9 },
     { path: "/en/about", priority: 0.85 },
+    { path: "/en/projects", priority: 0.85 },
+    { path: "/en/blog", priority: 0.8 },
+    { path: "/en/contact", priority: 0.8 },
   ].map(({ path, priority }) => ({
     url: `${SITE_URL}${path}`,
     lastModified: now,
@@ -19,19 +22,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  const projectRoutes = PROJECTS.map((project) => ({
-    url: `${SITE_URL}/projects/${project.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.85,
-  }));
+  const projectRoutes = PROJECTS.flatMap((project) => [
+    {
+      url: `${SITE_URL}/projects/${project.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/en/projects/${project.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ]);
 
-  const blogRoutes = BLOG_POSTS.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.75,
-  }));
+  const blogRoutes = BLOG_POSTS.flatMap((post) => [
+    {
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    },
+    {
+      url: `${SITE_URL}/en/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    },
+  ]);
 
   return [...staticRoutes, ...projectRoutes, ...blogRoutes];
 }

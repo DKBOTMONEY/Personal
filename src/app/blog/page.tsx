@@ -11,13 +11,17 @@ export const metadata: Metadata = {
   description: `บทความและแนวทางการพัฒนาเว็บแอปพลิเคชันด้วย Next.js, TypeScript, Prisma, PostgreSQL และการดูแลระบบด้วย Docker/Nginx เขียนโดย ${PROFILE.nameTh} (${PROFILE.nameEn})`,
   alternates: {
     canonical: "/blog",
+    languages: {
+      "th-TH": "/blog",
+      "en-US": "/en/blog",
+    },
   },
 };
 
 export default function BlogIndexPage() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref="/en/blog" />
 
       <main className="max-w-5xl w-full mx-auto px-6 md:px-16 py-14 md:py-20 space-y-12">
         <header className="border-b border-foreground/15 pb-8">

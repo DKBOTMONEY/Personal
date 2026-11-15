@@ -37,7 +37,7 @@ export default function EnglishAboutPage() {
 
   return (
     <div lang="en" className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="en" variant="page" />
+      <Navbar lang="en" variant="page" switchHref="/about" />
 
       <main className="max-w-5xl w-full mx-auto px-6 md:px-16 py-14 md:py-20 space-y-16">
         {/* Page Header */}
@@ -167,14 +167,14 @@ export default function EnglishAboutPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/projects"
+              href="/en/projects"
               className="inline-flex items-center gap-2 px-5 py-3 bg-[#c8ff00] text-[#060d1f] font-mono text-xs font-bold uppercase tracking-wider hover:opacity-90"
             >
               <span>View Projects</span>
               <ArrowRight size={14} />
             </Link>
             <Link
-              href="/contact"
+              href="/en/contact"
               className="inline-flex items-center gap-2 px-5 py-3 border border-[#f4efe6]/35 text-[#f4efe6] font-mono text-xs font-semibold uppercase tracking-wider hover:border-[#f4efe6]"
             >
               Contact {PROFILE.nameEn}

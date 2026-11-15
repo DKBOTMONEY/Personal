@@ -5,6 +5,7 @@ export type Project = {
   summary: string;
   summaryEn: string;
   role: string;
+  roleEn: string;
   period: string;
   clientOrContext: string;
   problem: string;
@@ -54,10 +55,20 @@ export type BlogPost = {
   publishedAt: string;
   updatedAt: string;
   readingTime: string;
+  readingTimeEn: string;
   tags: string[];
   author: string;
   authorEn: string;
   sections: {
+    heading: string;
+    paragraphs: string[];
+    code?: {
+      language: string;
+      filename?: string;
+      snippet: string;
+    };
+  }[];
+  sectionsEn: {
     heading: string;
     paragraphs: string[];
     code?: {

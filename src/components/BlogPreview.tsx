@@ -24,7 +24,7 @@ export default function BlogPreview({ lang = "th" }: BlogPreviewProps) {
         </div>
 
         <Link
-          href="/blog"
+          href={lang === "th" ? "/blog" : "/en/blog"}
           className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider px-4 py-2.5 border border-foreground/25 hover:border-foreground bg-white/50 text-foreground transition-colors self-start sm:self-auto"
         >
           <span>{lang === "th" ? "อ่านบทความทั้งหมด" : "All Articles"}</span>
@@ -33,42 +33,45 @@ export default function BlogPreview({ lang = "th" }: BlogPreviewProps) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {BLOG_POSTS.map((post) => (
-          <article
-            key={post.slug}
-            className="flex flex-col justify-between p-6 border border-foreground/15 bg-white/60 hover:border-foreground/45 transition-all"
-          >
-            <div>
-              <div className="flex items-center justify-between gap-2 text-[11px] font-mono text-foreground/55 mb-3">
-                <time dateTime={post.publishedAt}>{post.publishedAt}</time>
-                <span>{post.readingTime}</span>
+        {BLOG_POSTS.map((post) => {
+          const postHref = lang === "th" ? `/blog/${post.slug}` : `/en/blog/${post.slug}`;
+          return (
+            <article
+              key={post.slug}
+              className="flex flex-col justify-between p-6 border border-foreground/15 bg-white/60 hover:border-foreground/45 transition-all"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 text-[11px] font-mono text-foreground/55 mb-3">
+                  <time dateTime={post.publishedAt}>{post.publishedAt}</time>
+                  <span>{lang === "th" ? post.readingTime : post.readingTimeEn}</span>
+                </div>
+
+                <h3 className="font-bold font-display text-xl text-foreground leading-snug mb-3">
+                  <Link href={postHref} className="hover:underline">
+                    {lang === "th" ? post.title : post.titleEn}
+                  </Link>
+                </h3>
+
+                <p className="text-xs text-foreground/75 leading-relaxed mb-4">
+                  {lang === "th" ? post.summary : post.summaryEn}
+                </p>
               </div>
 
-              <h3 className="font-bold font-display text-xl text-foreground leading-snug mb-3">
-                <Link href={`/blog/${post.slug}`} className="hover:underline">
-                  {lang === "th" ? post.title : post.titleEn}
+              <div className="pt-4 border-t border-foreground/10 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-foreground/60">
+                  {lang === "th" ? post.author : post.authorEn}
+                </span>
+                <Link
+                  href={postHref}
+                  className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase tracking-wider text-foreground hover:underline"
+                >
+                  <span>{lang === "th" ? "อ่านต่อ" : "Read"}</span>
+                  <ArrowRight size={12} />
                 </Link>
-              </h3>
-
-              <p className="text-xs text-foreground/75 leading-relaxed mb-4">
-                {lang === "th" ? post.summary : post.summaryEn}
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-foreground/10 flex items-center justify-between">
-              <span className="text-[11px] font-mono text-foreground/60">
-                {lang === "th" ? post.author : post.authorEn}
-              </span>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase tracking-wider text-foreground hover:underline"
-              >
-                <span>{lang === "th" ? "อ่านต่อ" : "Read"}</span>
-                <ArrowRight size={12} />
-              </Link>
-            </div>
-          </article>
-        ))}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

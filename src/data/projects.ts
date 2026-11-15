@@ -212,6 +212,7 @@ export const PROJECTS: Project[] = [
     summaryEn:
       "Engineered a full-stack cloud gaming rental platform enabling low-latency 4K 60fps AAA game streaming via Moonlight/Sunshine, complete with real-time WebSocket PIN pairing, automated Stripe PromptPay QR wallet top-ups, TOTP 2FA admin security, and Wake-on-LAN/SSH hardware orchestration.",
     role: "Full-Stack Developer & System Architect (ออกแบบระบบทั้งหมดตั้งแต่ UI, API, Payment จนถึงระบบควบคุมเครื่องโฮสต์)",
+    roleEn: "Full-Stack Developer & System Architect (End-to-End UI, API, Payment & Host Orchestration)",
     period: "2026",
     clientOrContext: "NexiCloud (nexicloud.company)",
     problem:
@@ -262,6 +263,7 @@ export const PROJECTS: Project[] = [
     summaryEn:
       "Developed a modern corporate and service web platform for Hundee Group using Next.js and TypeScript, engineered for sub-second page transitions, mobile responsiveness, and technical SEO.",
     role: "Full-Stack Developer (รับผิดชอบตั้งแต่โครงสร้างหน้าเว็บจนถึงการ Deploy)",
+    roleEn: "Full-Stack Developer (End-to-End Frontend Architecture & Deployment)",
     period: "2025 – 2026",
     clientOrContext: "Hundee Group",
     problem:
@@ -302,6 +304,7 @@ export const PROJECTS: Project[] = [
     summaryEn:
       "Bilingual portfolio and engineering blog for Patipan Plonying built with Next.js 16 App Router, featuring Person/Article JSON-LD structured data, dynamic sitemaps, and zero-external-CDN SVG icons.",
     role: "Full-Stack Developer (Owner & Architect)",
+    roleEn: "Full-Stack Developer (Owner & Architect)",
     period: "2026",
     clientOrContext: "Personal Brand & Technical Knowledge Base",
     problem:
@@ -349,6 +352,7 @@ export const BLOG_POSTS: BlogPost[] = [
     publishedAt: "2026-11-08",
     updatedAt: "2026-11-08",
     readingTime: "7 นาที",
+    readingTimeEn: "7 min read",
     tags: ["Next.js", "WebSocket", "Cloud Gaming", "Stripe PromptPay", "System Architecture"],
     author: "ปฏิภาณ พลยิ่ง (Patipan Plonying)",
     authorEn: "Patipan Plonying",
@@ -404,6 +408,58 @@ export function sendLaunchTrigger(ws: WebSocket | null, bookingId: string, pin: 
         ],
       },
     ],
+    sectionsEn: [
+      {
+        heading: "1. Engineering Challenges in On-Demand Cloud Gaming Rental",
+        paragraphs: [
+          "When building NexiCloud (https://nexicloud.company/), the primary goal was to enable players to rent high-end gaming PCs on demand and stream AAA titles at up to 4K 60fps with ultra-low latency (~1ms local network overhead) via the Moonlight and Sunshine protocols across Windows, macOS, Android, and iOS/iPadOS.",
+          "The core engineering challenge solved by Patipan Plonying went beyond a standard booking UI: it required tightly orchestrating three real-time subsystems—(1) an automated wallet and instant QR top-up ledger, (2) a time-sensitive WebSocket signaling channel for 4-digit PIN pairing with Host PCs, and (3) remote hardware power management and post-session environment sanitization.",
+        ],
+      },
+      {
+        heading: "2. Real-Time PIN Pairing & Session Signaling over WebSockets",
+        paragraphs: [
+          "Once a player reserves a machine and opens the Moonlight client, the web platform must relay a 4-digit pairing PIN to the target Host PC immediately and stream status updates back to the browser without manual refreshes. We engineered a resilient WebSocket Signaling Client with exponential backoff and random jitter to prevent thundering-herd reconnection spikes during network blips.",
+        ],
+        code: {
+          language: "typescript",
+          filename: "src/lib/signaling-ws.ts",
+          snippet: `// Exponential Backoff + Jitter reconnection delay calculation
+function getReconnectDelayMs(attempt: number): number {
+  const baseDelay = Math.min(1000 * Math.pow(2, attempt), 30000);
+  const jitter = 0.75 + 0.5 * Math.random();
+  return Math.floor(baseDelay * jitter);
+}
+
+// Relay 4-digit Moonlight pairing PIN to the Host PC over WebSocket
+export function sendLaunchTrigger(ws: WebSocket | null, bookingId: string, pin: string) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(
+      JSON.stringify({
+        type: "launch_session",
+        bookingId,
+        pin,
+      })
+    );
+  }
+}`,
+        },
+      },
+      {
+        heading: "3. Automated Stripe PromptPay QR Top-Ups & Decimal-Precision Audit Ledger",
+        paragraphs: [
+          "To provide frictionless onboarding starting at 9 THB/hour, the integrated Wallet connects with Stripe PromptPay to generate scannable Thai banking QR codes on the fly, verifying webhook events and crediting player balances automatically within 3–5 seconds.",
+          "Every top-up and rental deduction is recorded in a centralized financial Audit Ledger linked to its Gateway Reference ID, using strict decimal precision arithmetic to eliminate floating-point rounding discrepancies.",
+        ],
+      },
+      {
+        heading: "4. Remote Hardware Orchestration (Wake-on-LAN & SSH) and Security Hardening",
+        paragraphs: [
+          "On the operations side, we built an Admin Console capable of waking sleeping Host PCs over the network via Wake-on-LAN (MAC address magic packets) and executing remote reboots or shutdowns over SSH directly from the browser, paired with a Host Agent that reports live CPU, GPU, and RAM telemetry.",
+          "Administrative access is hardened with TOTP 2FA (Authenticator app), httpOnly cookie token storage to mitigate XSS, and automated post-session quarantine routines that wipe previous game account sessions before the next rental begins.",
+        ],
+      },
+    ],
   },
   {
     slug: "deploy-nextjs-docker-nginx",
@@ -416,6 +472,7 @@ export function sendLaunchTrigger(ws: WebSocket | null, bookingId: string, pin: 
     publishedAt: "2026-11-05",
     updatedAt: "2026-11-07",
     readingTime: "6 นาที",
+    readingTimeEn: "6 min read",
     tags: ["Next.js", "Docker", "Nginx", "Infrastructure"],
     author: "ปฏิภาณ พลยิ่ง (Patipan Plonying)",
     authorEn: "Patipan Plonying",
@@ -509,6 +566,96 @@ server {
         },
       },
     ],
+    sectionsEn: [
+      {
+        heading: "Why Use Standalone Mode When Running Next.js in Docker?",
+        paragraphs: [
+          "When deploying a Next.js application to a self-managed Linux VPS or container cluster, a common pitfall is ending up with bloated Docker images (often exceeding 1 GB) by copying the entire node_modules directory into the runtime container.",
+          "Patipan Plonying recommends enabling `output: 'standalone'` in `next.config.ts`. Next.js automatically traces only the production files required to run the server and outputs a minimal `.next/standalone` bundle—shrinking container image sizes down to a few hundred megabytes and significantly improving cold-start times.",
+        ],
+        code: {
+          language: "typescript",
+          filename: "next.config.ts",
+          snippet: `import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "standalone",
+  poweredByHeader: false,
+};
+
+export default nextConfig;`,
+        },
+      },
+      {
+        heading: "Production Multi-Stage Dockerfile",
+        paragraphs: [
+          "Splitting the Dockerfile into three distinct stages—`deps` (installing packages), `builder` (compiling the application), and `runner` (the lean production image)—maximizes Docker layer caching and hardens security by executing the Node.js server under a non-root system user.",
+        ],
+        code: {
+          language: "dockerfile",
+          filename: "Dockerfile",
+          snippet: `FROM node:20-alpine AS base
+
+FROM base AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+RUN addgroup --system --gid 1001 nodejs && \\
+    adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+CMD ["node", "server.js"]`,
+        },
+      },
+      {
+        heading: "Configuring Nginx as a Reverse Proxy & Enforcing Canonical Domains",
+        paragraphs: [
+          "With the Next.js container listening internally on port 3000, Nginx sits on ports 80/443 to handle SSL/TLS termination, enforce a permanent 301 redirect from the bare domain to `www`, and proxy HTTP/1.1 and WebSocket upgrade headers cleanly to the container.",
+        ],
+        code: {
+          language: "nginx",
+          filename: "/etc/nginx/conf.d/pl-patipan.conf",
+          snippet: `server {
+    listen 80;
+    server_name pl-patipan.in.th;
+    return 301 https://www.pl-patipan.in.th$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name www.pl-patipan.in.th;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}`,
+        },
+      },
+    ],
   },
   {
     slug: "prisma-postgresql-schema-design",
@@ -521,6 +668,7 @@ server {
     publishedAt: "2026-11-06",
     updatedAt: "2026-11-07",
     readingTime: "5 นาที",
+    readingTimeEn: "5 min read",
     tags: ["PostgreSQL", "Prisma", "TypeScript", "Database"],
     author: "ปฏิภาณ พลยิ่ง (Patipan Plonying)",
     authorEn: "Patipan Plonying",
@@ -589,6 +737,71 @@ if (process.env.NODE_ENV !== "production") {
         },
       },
     ],
+    sectionsEn: [
+      {
+        heading: "Single Source of Truth Schema Modeling with Compile-Time Safety",
+        paragraphs: [
+          "Pairing Prisma ORM with PostgreSQL in a TypeScript codebase turns your database schema into a single source of truth that automatically generates strict TypeScript types across your backend—eliminating typos in column names and mismatched payload types.",
+          "In production systems built by Patipan Plonying, every core table establishes explicit audit timestamps (`createdAt`, `updatedAt`), bounded status Enums, and composite B-tree indexes aligned with real-world `WHERE` and `ORDER BY` query patterns.",
+        ],
+        code: {
+          language: "prisma",
+          filename: "prisma/schema.prisma",
+          snippet: `datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum InquiryStatus {
+  PENDING
+  REPLIED
+  ARCHIVED
+}
+
+model ContactInquiry {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  message   String        @db.Text
+  status    InquiryStatus @default(PENDING)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  @@index([status, createdAt(sort: Desc)])
+  @@map("contact_inquiries")
+}`,
+        },
+      },
+      {
+        heading: "Preventing Connection Pool Exhaustion in Next.js",
+        paragraphs: [
+          "During Next.js development, Hot Module Replacement (HMR) re-imports server modules on file saves, which can inadvertently instantiate multiple `PrismaClient` pools and exhaust PostgreSQL connection limits. Attaching a singleton instance to `globalThis` prevents connection leaks cleanly.",
+        ],
+        code: {
+          language: "typescript",
+          filename: "src/lib/prisma.ts",
+          snippet: `import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}`,
+        },
+      },
+    ],
   },
   {
     slug: "github-actions-cicd-pipeline",
@@ -601,6 +814,7 @@ if (process.env.NODE_ENV !== "production") {
     publishedAt: "2026-11-07",
     updatedAt: "2026-11-07",
     readingTime: "5 นาที",
+    readingTimeEn: "5 min read",
     tags: ["CI/CD", "GitHub Actions", "TypeScript", "Next.js"],
     author: "ปฏิภาณ พลยิ่ง (Patipan Plonying)",
     authorEn: "Patipan Plonying",
@@ -652,6 +866,57 @@ jobs:
         heading: "การเชื่อมต่อจาก CI สู่ขั้นตอนการ Deploy",
         paragraphs: [
           "เมื่อขั้นตอน Verify ผ่านทั้งหมดแล้ว หากโฮสต์อยู่บน Vercel ระบบจะสามารถดึงโค้ดที่ผ่านการตรวจสอบไปสร้าง Production Deployment ได้ทันที หรือหากโฮสต์บน VPS ด้วย Docker ก็สามารถเพิ่ม Job ถัดไปเพื่อสั่ง Build Image และรีสตาร์ท Container ผ่าน SSH ได้อย่างปลอดภัยโดยที่เว็บไซต์ไม่ล่มกลางคัน",
+        ],
+      },
+    ],
+    sectionsEn: [
+      {
+        heading: "Why Automate Continuous Integration (CI) Before Every Release?",
+        paragraphs: [
+          "Even for solo engineers or lean teams, relying on manual `tsc --noEmit` and `npm run build` checks locally makes it easy for subtle type regressions to slip into `main`. Configuring a GitHub Actions pipeline on every push and pull request guarantees that your main branch remains deployable at all times.",
+          "In Patipan Plonying's standard setup, the verification job finishes in 1–2 minutes by caching both the npm dependency store and the `.next/cache` build directory.",
+        ],
+        code: {
+          language: "yaml",
+          filename: ".github/workflows/ci.yml",
+          snippet: `name: Production Readiness CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20 with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies cleanly
+        run: npm ci
+
+      - name: Run TypeScript type check
+        run: npx tsc --noEmit
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Verify production build
+        run: npm run build`,
+        },
+      },
+      {
+        heading: "Bridging Continuous Integration to Zero-Downtime Deployment",
+        paragraphs: [
+          "Once the verification job passes, Vercel can automatically promote the verified commit to Production, or a subsequent CD job can build the Docker image and roll out updated containers over SSH on a Linux VPS without downtime.",
         ],
       },
     ],

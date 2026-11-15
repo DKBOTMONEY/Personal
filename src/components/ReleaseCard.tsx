@@ -11,7 +11,9 @@ interface ReleaseCardProps {
 export default function ReleaseCard({ project, lang = "th" }: ReleaseCardProps) {
   const title = lang === "th" ? project.title : project.titleEn;
   const summary = lang === "th" ? project.summary : project.summaryEn;
+  const role = lang === "th" ? project.role : project.roleEn;
   const results = lang === "th" ? project.results : project.resultsEn;
+  const projectHref = lang === "th" ? `/projects/${project.slug}` : `/en/projects/${project.slug}`;
 
   return (
     <article
@@ -31,13 +33,13 @@ export default function ReleaseCard({ project, lang = "th" }: ReleaseCardProps) 
         </div>
 
         <h3 className="font-bold font-display text-2xl md:text-3xl text-foreground leading-snug tracking-tight mb-2">
-          <Link href={`/projects/${project.slug}`} className="hover:underline">
+          <Link href={projectHref} className="hover:underline">
             {title}
           </Link>
         </h3>
 
         <p className="text-xs mb-4 font-mono text-foreground/55 uppercase tracking-wider">
-          {project.role}
+          {role}
         </p>
 
         <p className="text-sm leading-relaxed mb-5 text-foreground/80 font-sans">
@@ -76,7 +78,7 @@ export default function ReleaseCard({ project, lang = "th" }: ReleaseCardProps) 
 
       <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-foreground/10">
         <Link
-          href={`/projects/${project.slug}`}
+          href={projectHref}
           className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#060d1f] text-[#f4efe6] hover:bg-[#0c1a3b] text-xs font-semibold transition-colors font-mono uppercase tracking-wider"
         >
           <span>{lang === "th" ? "อ่านกรณีศึกษาฉบับเต็ม" : "Read Case Study"}</span>

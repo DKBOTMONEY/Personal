@@ -101,7 +101,7 @@ export default function Hero({ lang = "th" }: HeroProps) {
 
           <div className="flex flex-wrap gap-3.5 mt-9">
             <Link
-              href="/projects"
+              href={lang === "th" ? "/projects" : "/en/projects"}
               className="inline-flex items-center gap-2 px-6 py-3.5 text-xs md:text-sm font-semibold uppercase tracking-wider transition-colors font-mono bg-[#060d1f] text-[#E4E3DB] hover:bg-[#0c1a3b]"
             >
               <span>{lang === "th" ? "ดูโปรเจกต์และกรณีศึกษา" : "View Case Studies"}</span>
@@ -109,7 +109,7 @@ export default function Hero({ lang = "th" }: HeroProps) {
             </Link>
 
             <Link
-              href="/contact"
+              href={lang === "th" ? "/contact" : "/en/contact"}
               className="inline-flex items-center gap-2 px-6 py-3.5 text-xs md:text-sm font-semibold uppercase tracking-wider transition-colors font-mono border border-[#060d1f]/35 text-[#060d1f] bg-white/40 hover:border-[#060d1f]"
             >
               <span>{lang === "th" ? "ติดต่อพูดคุยงาน" : "Contact Me"}</span>

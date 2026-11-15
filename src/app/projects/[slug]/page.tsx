@@ -32,6 +32,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: `${project.summary} พัฒนาโดย ${PROFILE.nameTh} (${PROFILE.nameEn}) ด้วย ${project.tech.join(", ")}`,
     alternates: {
       canonical: `/projects/${project.slug}`,
+      languages: {
+        "th-TH": `/projects/${project.slug}`,
+        "en-US": `/en/projects/${project.slug}`,
+      },
     },
     openGraph: {
       type: "article",
@@ -51,7 +55,7 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref={`/en/projects/${project.slug}`} />
 
       <main className="max-w-4xl w-full mx-auto px-6 md:px-16 py-14 md:py-20 space-y-12">
         {/* Breadcrumb */}

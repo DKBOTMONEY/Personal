@@ -10,13 +10,17 @@ export const metadata: Metadata = {
   description: `ติดต่อ ${PROFILE.nameTh} (${PROFILE.nameEn}) Full-Stack Developer สำหรับงานพัฒนาเว็บแอปพลิเคชัน Next.js, TypeScript, การวางโครงสร้างระบบ หรือตำแหน่งงาน Full-Stack`,
   alternates: {
     canonical: "/contact",
+    languages: {
+      "th-TH": "/contact",
+      "en-US": "/en/contact",
+    },
   },
 };
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#f4efe6] text-[#060d1f]">
-      <Navbar lang="th" variant="page" />
+      <Navbar lang="th" variant="page" switchHref="/en/contact" />
 
       <main className="max-w-5xl w-full mx-auto px-6 md:px-16 py-14 md:py-20">
         <header className="mb-8">
