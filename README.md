@@ -17,14 +17,13 @@ Official portfolio, case studies, and engineering blog of **ปฏิภาณ �
 
 ---
 
-## Key Pages & Routes
+## Key Pages & Routes (24 Bilingual URLs)
 
-- `/` — หน้าหลักภาษาไทย (`ปฏิภาณ พลยิ่ง (Patipan Plonying) | Full-Stack Developer`)
+- `/` & `/en` — หน้าหลักภาษาไทยและภาษาอังกฤษ (`ปฏิภาณ พลยิ่ง (Patipan Plonying) | Full-Stack Developer`)
 - `/about` & `/en/about` — ประวัติ แนวคิดด้านวิศวกรรม และประสบการณ์ทำงาน
-- `/projects` & `/projects/[slug]` — ผลงานและกรณีศึกษาเชิงลึก (เช่น `/projects/hundee-group`)
-- `/blog` & `/blog/[slug]` — บทความเทคนิคด้าน Next.js, Docker, Nginx, Prisma, PostgreSQL และ CI/CD
-- `/contact` — ฟอร์มติดต่อพร้อมระบบป้องกันสแปม (Honeypot) และการซ่อนอีเมลจากบอท
-- `/en` — หน้าเว็บไซต์เวอร์ชันภาษาอังกฤษ
+- `/projects` & `/en/projects` — ผลงานและกรณีศึกษาเชิงลึก (`/projects/nexicloud`, `/projects/hundee-group`, `/projects/pl-patipan-portfolio`)
+- `/blog` & `/en/blog` — บทความเทคนิค 4 เรื่องด้าน Cloud Gaming Architecture, Next.js, Docker, Nginx, Prisma, PostgreSQL และ CI/CD
+- `/contact` & `/en/contact` — ฟอร์มติดต่อพร้อมระบบป้องกันสแปม (Honeypot, Timing Check, IP Rate Limit) และการซ่อนอีเมลจากบอท
 
 ---
 
